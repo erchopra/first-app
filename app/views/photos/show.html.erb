@@ -1,0 +1,27 @@
+PHOTO IS
+<%= image_tag @photo.avatar.url(:medium) %><br>
+<br><br>Tag some one on this photo<br>
+
+
+<%= form_for([@album,@photo])  do |photo_form| %>
+  <% if @photo.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this album from being saved:</h2>
+    <ul>
+    <% @photo.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+<div class="field">
+  <%= photo_form.label :tag_list, "Tags (separated by commas)" %><br />
+  <%= photo_form.text_field :tag_list %>
+</div>
+
+ <div class="actions">
+    <%= photo_form.submit  'Create tags' %>
+  </div>
+  <%= link_to 'Back to Album', album_path(@album) %> 
+<% end%>

@@ -1,0 +1,25 @@
+
+<h1>Editing Album Name</h1>
+<%= form_for(@album) do |album_form| %>
+  <% if @album.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+    <ul>
+    <% @album.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+ 
+  <div class="field">
+    <%= album_form.label :title %><br />
+    <%= album_form.text_field :title %>
+  </div>
+  
+  <div class="actions">
+    <%= album_form.submit %>
+  </div>
+<% end %>
+<%= link_to 'Show', @album %> |
+<%= link_to 'Back', albums_path %>

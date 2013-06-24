@@ -1,0 +1,29 @@
+<% @album.photos.build %>
+<%= form_for @album , :html => { :multipart => true } do |album_form| %>
+  <% if @album.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+    <ul>
+    <% @album.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+ 
+
+ 
+  <div class="field">
+    <%= album_form.label :title %><br />
+    <%= album_form.text_field :title %>
+  </div>
+
+  <div class="field">
+  	<%= render :partial => 'photos/form',
+             :locals => {:form => album_form} %>
+  </div>
+  
+  <div class="actions">
+    <%= album_form.submit %>
+  </div>
+<% end %>

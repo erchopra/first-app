@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div style=" width:800px;  padding:20px;">
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<% if current_user != nil%>
+<p>Your email id is  "<%= current_user.email%>"</p>
+<% end%>
+<%= yield %>
+
+	<div id="user_nav" >
+		<% if user_signed_in? %>
+		<h3> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %></h3>
+		<% end %>
+	</div>
+</div>
+</body>
+</html>

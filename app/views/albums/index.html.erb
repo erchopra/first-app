@@ -1,0 +1,20 @@
+<h1>Listing Albums</h1>
+
+<table border="1">
+  
+
+<% @albums.each_with_index do |album ,i| %>
+<tr><td>(<%= i+1 %>)ALBUM   <%= album.title %></td></tr>
+<tr>
+
+<td><%= link_to (image_tag album.photos.first.avatar.url(:medium),{:size =>"50x50"}), album_path(album) unless album.photos.empty? %></td>
+</tr>
+<tr><td>Total number of photos in album ("<%= album.title %>") is <%= album.photos.size %> </td></tr>	
+<tr><td><%= link_to 'Destroy',  album, method: :delete, data: { confirm: 'Are you sure?' } %></td></tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Album', new_album_path %>
+

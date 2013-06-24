@@ -1,0 +1,11 @@
+<% @photos.each do |photo| %>
+<div>
+<tr>
+<td><%= image_tag photo.avatar.url(:medium),{:size =>"50x50"} unless photo.nil? %></td>
+</tr>
+<tr><td> TAGS ARE</td>
+	<td><%= raw  photo.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
+</tr>
+</div>
+<% end %>
+<p>Click to view yours album <%= link_to 'View Album', albums_path %></p>
